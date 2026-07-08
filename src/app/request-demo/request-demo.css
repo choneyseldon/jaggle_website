@@ -42,7 +42,7 @@
 
 /* ---- hero ---- */
 .rd .contact-hero {
-  margin-top: 64px;
+  margin-top: var(--nav-h);
   padding-top: clamp(32px, 5vh, 72px);
   padding-bottom: clamp(40px, 6vh, 72px);
 }

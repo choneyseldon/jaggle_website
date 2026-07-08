@@ -31,7 +31,7 @@
 /* ---- pricing hero ---- */
 .section.pricing-hero {
   border-top: none;
-  padding-top: clamp(32px, 5vh, 72px);
+  padding-top: calc(var(--nav-h) + clamp(32px, 5vh, 72px));
   padding-bottom: clamp(28px, 4vh, 40px);
 }
 

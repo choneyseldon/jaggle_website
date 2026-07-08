@@ -22,7 +22,7 @@
    ================================================================= */
 .hero {
   position: relative;
-  padding: clamp(28px, 6vh, 72px) 0 clamp(24px, 4vh, 48px);
+  padding: calc(var(--nav-h) + clamp(28px, 6vh, 72px)) 0 clamp(24px, 4vh, 48px);
 }
 .hero-inner {
   display: flex;
