@@ -911,6 +911,9 @@ html[data-theme="day"] .foot-wordmark {
   .theme-toggle {
     display: none;
   }
+  .nav-right .lg-btn {
+    display: none;
+  }
 }
 @media (max-width: 420px) {
   .logo-word {
