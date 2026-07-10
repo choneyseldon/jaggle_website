@@ -200,7 +200,7 @@ export default function PricingPage() {
             )}
 
             {location === "bhutan" && (
-              <div className="price-card local">
+              <div className="price-card local popular">
                 <div className="price-head">
                   <span className="price-tier">Advanced &middot; Bhutan</span>
                   <span className="price-badge local">
