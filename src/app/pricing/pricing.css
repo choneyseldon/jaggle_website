@@ -247,13 +247,39 @@ html[data-theme="day"] .price-toggle .lg-edge {
   box-shadow: 0 10px 24px -12px rgba(112, 51, 255, 0.7);
 }
 
+/* ---- location selector (Global / Bhutan) ---- */
+.location-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  margin: 0 0 clamp(20px, 3vh, 32px);
+}
+.location-tabs button {
+  background: none;
+  border: none;
+  padding: 0 0 6px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--fg-muted);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s var(--ease), border-color 0.2s var(--ease);
+}
+.location-tabs button:hover {
+  color: var(--fg-dim);
+}
+.location-tabs button.is-active {
+  color: var(--fg);
+  border-bottom-color: var(--primary);
+}
+
 /* ---- price cards ---- */
 .price-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 16px;
   align-items: stretch;
-  max-width: 1200px;
+  max-width: 960px;
   margin: 0 auto;
 }
 .price-card {
@@ -678,12 +704,8 @@ html[data-theme="day"] .ctable td.col-pop {
   .ctable {
     min-width: 680px;
   }
-  .price-grid {
-    grid-template-columns: repeat(2, 1fr);
-    max-width: 680px;
-  }
 }
-@media (max-width: 560px) {
+@media (max-width: 760px) {
   .price-grid {
     grid-template-columns: 1fr;
     max-width: 420px;

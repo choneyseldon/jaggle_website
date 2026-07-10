@@ -5,6 +5,7 @@ import { LiquidButton } from "@/components/site/LiquidButton";
 import "./pricing.css";
 
 type Cycle = "monthly" | "annual";
+type Location = "global" | "bhutan";
 
 const PRICES: Record<Cycle, { global: { amt: string; note: string }; bhutan: { amt: string; note: string } }> = {
   monthly: {
@@ -40,6 +41,7 @@ const FAQ_ITEMS = [
 
 export default function PricingPage() {
   const [cycle, setCycle] = useState<Cycle>("monthly");
+  const [location, setLocation] = useState<Location>("global");
   const [teamSize, setTeamSize] = useState(5);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
@@ -61,6 +63,27 @@ export default function PricingPage() {
               <br />
               Pay globally in USD or locally in Ngultrum via MBOB.
             </p>
+          </div>
+
+          <div className="location-tabs" role="tablist" aria-label="Pricing location">
+            <button
+              type="button"
+              role="tab"
+              aria-selected={location === "global"}
+              className={location === "global" ? "is-active" : ""}
+              onClick={() => setLocation("global")}
+            >
+              Global
+            </button>
+            <button
+              type="button"
+              role="tab"
+              aria-selected={location === "bhutan"}
+              className={location === "bhutan" ? "is-active" : ""}
+              onClick={() => setLocation("bhutan")}
+            >
+              Bhutan
+            </button>
           </div>
 
           <div className="price-toggle-wrap">
@@ -143,69 +166,74 @@ export default function PricingPage() {
               </a>
             </div>
 
-            <div className="price-card popular">
-              <div className="price-head">
-                <span className="price-tier">Advanced &middot; Global</span>
-                <span className="price-badge popular">Most popular</span>
+            {location === "global" && (
+              <div className="price-card popular">
+                <div className="price-head">
+                  <span className="price-tier">Advanced &middot; Global</span>
+                  <span className="price-badge popular">Most popular</span>
+                </div>
+                <div className="price-amt">
+                  <span>{global.amt}</span> <small>/ user / mo</small>
+                </div>
+                <div className="price-note">{global.note}</div>
+                <ul className="feat">
+                  <li>
+                    <i className="ti ti-check" /> Unlimited users &amp; projects
+                  </li>
+                  <li>
+                    <i className="ti ti-check" /> Full AI suite + risk prediction
+                  </li>
+                  <li>
+                    <i className="ti ti-check" /> GNH wellbeing layer
+                  </li>
+                  <li>
+                    <i className="ti ti-check" /> Advanced analytics
+                  </li>
+                  <li>
+                    <i className="ti ti-check" /> Team collaboration
+                  </li>
+                </ul>
+                <LiquidButton href="#" className="price-cta" variant="primary">
+                  Start 14-day trial
+                </LiquidButton>
               </div>
-              <div className="price-amt">
-                <span>{global.amt}</span> <small>/ user / mo</small>
-              </div>
-              <div className="price-note">{global.note}</div>
-              <ul className="feat">
-                <li>
-                  <i className="ti ti-check" /> Unlimited users &amp; projects
-                </li>
-                <li>
-                  <i className="ti ti-check" /> Full AI suite + risk prediction
-                </li>
-                <li>
-                  <i className="ti ti-check" /> GNH wellbeing layer
-                </li>
-                <li>
-                  <i className="ti ti-check" /> Advanced analytics
-                </li>
-                <li>
-                  <i className="ti ti-check" /> Team collaboration
-                </li>
-              </ul>
-              <LiquidButton href="#" className="price-cta" variant="primary">
-                Start 14-day trial
-              </LiquidButton>
-            </div>
+            )}
 
-            <div className="price-card local">
-              <div className="price-head">
-                <span className="price-tier">Advanced &middot; Bhutan</span>
-                <span className="price-badge local">
-                  <i className="ti ti-heart-filled" /> Local
-                </span>
+            {location === "bhutan" && (
+              <div className="price-card local">
+                <div className="price-head">
+                  <span className="price-tier">Advanced &middot; Bhutan</span>
+                  <span className="price-badge local">
+                    <i className="ti ti-heart-filled" /> Local
+                  </span>
+                </div>
+                <div className="price-amt">
+                  <span>{bhutan.amt}</span> <small>/ user / mo</small>
+                </div>
+                <div className="price-note">{bhutan.note}</div>
+                <ul className="feat">
+                  <li>
+                    <i className="ti ti-check" /> Unlimited users &amp; projects
+                  </li>
+                  <li>
+                    <i className="ti ti-check" /> GNH wellbeing layer
+                  </li>
+                  <li>
+                    <i className="ti ti-check" /> Advanced analytics
+                  </li>
+                  <li>
+                    <i className="ti ti-check" /> Team collaboration
+                  </li>
+                  <li>
+                    <i className="ti ti-check" /> Local data residency
+                  </li>
+                </ul>
+                <a className="price-cta ghost" href="#">
+                  <i className="ti ti-credit-card pay-ico" /> Pay via MBOB{" "}
+                  <i className="ti ti-chevron-down pay-caret" />
+                </a>
               </div>
-              <div className="price-amt">
-                <span>{bhutan.amt}</span> <small>/ user / mo</small>
-              </div>
-              <div className="price-note">{bhutan.note}</div>
-              <ul className="feat">
-                <li>
-                  <i className="ti ti-check" /> Unlimited users &amp; projects
-                </li>
-                <li>
-                  <i className="ti ti-check" /> GNH wellbeing layer
-                </li>
-                <li>
-                  <i className="ti ti-check" /> Advanced analytics
-                </li>
-                <li>
-                  <i className="ti ti-check" /> Team collaboration
-                </li>
-                <li>
-                  <i className="ti ti-check" /> Local data residency
-                </li>
-              </ul>
-              <a className="price-cta ghost" href="#">
-                <i className="ti ti-credit-card pay-ico" /> Pay via MBOB <i className="ti ti-chevron-down pay-caret" />
-              </a>
-            </div>
+            )}
 
             <div className="price-card enterprise">
               <div className="price-head">
