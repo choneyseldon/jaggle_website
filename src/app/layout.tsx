@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" data-theme="night" className={`${geist.variable} ${geistMono.variable}`} suppressHydrationWarning>
+    <html lang="en" data-theme="day" className={`${geist.variable} ${geistMono.variable}`} suppressHydrationWarning>
       <head>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.5.0/dist/tabler-icons.min.css" />
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />

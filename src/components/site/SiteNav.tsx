@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { MegaMenu } from "./MegaMenu";
-import { ThemeToggle } from "./ThemeToggle";
+// import { ThemeToggle } from "./ThemeToggle";
 
 type NavKey = "features" | "our-story" | "pricing" | "contact" | null;
 
@@ -105,7 +105,7 @@ export function SiteNav({ ctaHref, ctaLabel = "Get started free" }: SiteNavProps
         {showMegaMenu && <MegaMenu id="megaFeatures" open={megaOpen} onEnter={openMega} onLeave={closeMegaSoon} />}
 
         <div className="nav-right">
-          <ThemeToggle />
+          {/* <ThemeToggle /> */}
           <Link className="lg-btn lg-btn--primary lg-btn--sm" href={resolvedCtaHref}>
             <span className="lg-refract" aria-hidden="true" />
             <span className="lg-edge" aria-hidden="true" />

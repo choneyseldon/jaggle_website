@@ -905,6 +905,9 @@ html[data-theme="day"] .foot-wordmark {
   .nav-links {
     display: none;
   }
+  .nav-right > .lg-btn {
+    display: none;
+  }
   .burger {
     display: inline-flex;
   }
