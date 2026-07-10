@@ -335,7 +335,7 @@ html[data-theme="day"] .price-toggle .lg-edge {
   align-items: flex-start;
   justify-content: space-between;
   gap: 10px;
-  min-height: 22px;
+  min-height: 36px;
   margin-bottom: 16px;
 }
 .price-tier {
@@ -389,12 +389,17 @@ html[data-theme="night"] .price-badge.local {
   margin: 0 0 6px;
   line-height: 1;
   font-size: 44px;
+  min-height: 52px;
 }
 .price-amt small {
   font-size: 15px;
   color: var(--fg-muted);
   font-weight: 400;
   letter-spacing: 0;
+  white-space: nowrap;
+}
+.price-card.local .price-amt {
+  font-size: 34px;
 }
 .price-note {
   font-size: 13px;
