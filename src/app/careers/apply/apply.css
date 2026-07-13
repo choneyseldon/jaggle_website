@@ -1,0 +1,449 @@
+/* =================================================================
+   JOB DETAILS / APPLY PAGE — page-scoped styles
+   Only imported by src/app/careers/apply/[id]/page.tsx — never edit
+   globals.css for this route. Form-chrome (.cform/.winbar/.cf-*) and
+   badge pills (.role-dept/.role-tag-new) are intentionally duplicated
+   from contact.css rather than shared, matching this codebase's
+   per-page CSS isolation convention.
+   ================================================================= */
+
+.section {
+  padding: var(--section-pad) var(--gutter);
+  border-top: 1px solid var(--line);
+}
+
+.jd-hero {
+  padding-top: calc(var(--nav-h) + clamp(28px, 5vh, 56px));
+  padding-bottom: clamp(20px, 3vh, 32px);
+  border-top: none;
+}
+.jd-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--fg-muted);
+  margin-bottom: 28px;
+  transition: color 0.2s var(--ease);
+}
+.jd-back i {
+  font-size: 15px;
+}
+.jd-back:hover {
+  color: var(--fg);
+}
+
+.jd-head {
+  max-width: 760px;
+}
+.jd-badges {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+.jd-head h1 {
+  font-family: var(--f-display);
+  font-weight: 700;
+  font-size: clamp(32px, 4.4vw, 52px);
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  margin: 0 0 18px;
+}
+.jd-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 28px;
+  color: var(--fg-dim);
+  font-size: 14px;
+}
+.jd-meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+.jd-meta i {
+  font-size: 16px;
+  color: var(--fg-muted);
+}
+.jd-meta .new-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #34d399;
+  box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.5);
+  animation: jdPulse 2.4s var(--ease) infinite;
+}
+@keyframes jdPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 7px rgba(52, 211, 153, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(52, 211, 153, 0);
+  }
+}
+.jd-apply-cta {
+  height: 48px;
+  padding: 0 26px;
+}
+
+/* ---- dept + new badges (duplicated from contact.css .role-dept/.role-tag-new) ---- */
+.role-dept {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 6px 11px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.role-dept .d {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex: 0 0 auto;
+}
+.jd-dept {
+  color: #fff;
+}
+.jd-dept .d {
+  background: #fff;
+}
+.jd-dept-eng {
+  background: linear-gradient(135deg, #6e8cff, #5566e0 55%, #3b3f9e);
+}
+.jd-dept-ai {
+  background: linear-gradient(135deg, #b080ff, #8a5cf0 55%, #6e8cff);
+}
+.jd-dept-design {
+  background: linear-gradient(135deg, #ff7eb6, #c86ce0 55%, #8a5cf0);
+}
+.jd-dept-gtm {
+  background: linear-gradient(135deg, #36d399, #2bb6c4 55%, #6e8cff);
+}
+.role-tag-new {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--f-mono);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 5px 9px;
+  border-radius: 999px;
+  color: var(--grad-b);
+  background: rgba(255, 255, 255, 0.92);
+}
+html[data-theme="night"] .role-tag-new {
+  background: rgba(255, 255, 255, 0.16);
+  color: #fff;
+}
+
+/* ---- body layout ---- */
+.jd-body {
+  padding-top: clamp(8px, 2vh, 16px);
+}
+.jd-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 400px;
+  gap: clamp(32px, 4vw, 64px);
+  align-items: start;
+}
+.jd-content {
+  max-width: 720px;
+}
+.jd-block {
+  margin-bottom: clamp(28px, 4vh, 40px);
+}
+.jd-block h2 {
+  font-family: var(--f-display);
+  font-weight: 700;
+  font-size: clamp(19px, 2vw, 22px);
+  letter-spacing: -0.02em;
+  margin: 0 0 14px;
+}
+.jd-block p {
+  color: var(--fg-dim);
+  font-size: 15.5px;
+  line-height: 1.65;
+  margin: 0;
+}
+.jd-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.jd-list li {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  color: var(--fg-dim);
+  font-size: 15px;
+  line-height: 1.55;
+}
+.jd-list li i {
+  color: var(--grad-a);
+  font-size: 17px;
+  flex: 0 0 auto;
+  margin-top: 2px;
+}
+.jd-list--muted li i {
+  color: var(--fg-muted);
+  font-size: 14px;
+}
+.jd-foot-note {
+  font-size: 14px;
+  color: var(--fg-muted);
+  padding-top: 8px;
+  border-top: 1px solid var(--line);
+}
+
+.jd-sidebar {
+  position: sticky;
+  top: calc(var(--nav-h) + 24px);
+}
+.jd-optional {
+  color: var(--fg-muted);
+  font-weight: 400;
+}
+
+/* ---- file input styled as a button-like drop target ---- */
+.jd-file {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  font-size: 14.5px;
+  color: var(--fg-dim);
+  background: var(--bg-2);
+  border: 1px dashed var(--glass-border);
+  border-radius: 12px;
+  padding: 13px 15px;
+  cursor: pointer;
+  transition: border-color 0.2s var(--ease), background 0.2s var(--ease);
+}
+html[data-theme="day"] .jd-file {
+  background: rgba(255, 255, 255, 0.6);
+}
+.jd-file:hover {
+  border-color: rgba(176, 128, 255, 0.55);
+}
+.jd-file i {
+  font-size: 17px;
+  color: var(--fg-muted);
+}
+.jd-file-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+/* ---- form card (duplicated from contact.css .cform/.winbar/.cf-*) ---- */
+.cform {
+  border-radius: 18px;
+  overflow: hidden;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(22px) saturate(160%);
+  box-shadow: 0 1px 0 var(--glass-shine) inset, 0 24px 60px -30px rgba(0, 0, 0, 0.5);
+}
+.cform-body {
+  padding: clamp(22px, 2.6vw, 32px);
+}
+.cform-head h3 {
+  font-family: var(--f-display);
+  font-weight: 700;
+  font-size: clamp(20px, 2.2vw, 24px);
+  letter-spacing: -0.02em;
+  margin: 0 0 6px;
+}
+.cform-head p {
+  color: var(--fg-muted);
+  font-size: 14px;
+  margin: 0 0 26px;
+}
+.cf-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.cf-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+.cf-field label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--fg-dim);
+  letter-spacing: -0.005em;
+}
+.cf-input,
+.cf-textarea {
+  width: 100%;
+  font: inherit;
+  font-size: 14.5px;
+  color: var(--fg);
+  background: var(--bg-2);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  padding: 13px 15px;
+  transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease), background 0.2s var(--ease);
+}
+html[data-theme="day"] .cf-input,
+html[data-theme="day"] .cf-textarea {
+  background: rgba(255, 255, 255, 0.6);
+}
+.cf-input::placeholder,
+.cf-textarea::placeholder {
+  color: var(--fg-muted);
+}
+.cf-input:focus,
+.cf-textarea:focus {
+  outline: none;
+  border-color: rgba(176, 128, 255, 0.55);
+  box-shadow: 0 0 0 3px rgba(112, 51, 255, 0.16);
+  background: var(--surface);
+}
+.cf-textarea {
+  resize: vertical;
+  min-height: 110px;
+  line-height: 1.5;
+}
+.cf-submit {
+  width: 100%;
+  margin-top: 8px;
+  height: 52px;
+}
+.cf-submit:disabled {
+  opacity: 0.75;
+  cursor: default;
+}
+.cf-submit:disabled:hover {
+  transform: none;
+}
+
+/* ---- window-chrome (duplicated from contact.css .winbar) ---- */
+.winbar {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 12px 16px;
+  background: var(--bg-2);
+  border-bottom: 1px solid var(--line);
+}
+.winbar .dots {
+  display: inline-flex;
+  gap: 6px;
+  flex: 0 0 auto;
+}
+.winbar .dots i {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--line-strong);
+}
+.winbar .dots i:nth-child(1) {
+  background: #ff5f57;
+}
+.winbar .dots i:nth-child(2) {
+  background: #febc2e;
+}
+.winbar .dots i:nth-child(3) {
+  background: #28c840;
+}
+.winbar .name {
+  font-family: var(--f-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.02em;
+  color: var(--fg-muted);
+}
+.winbar .live {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #34d399;
+}
+.winbar .live .pulse {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #34d399;
+  box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.5);
+  animation: jdPulse 2.4s var(--ease) infinite;
+}
+
+/* ---- confirmation state (no real backend — local UX only) ---- */
+.cform-success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 6px;
+  padding: clamp(48px, 7vw, 72px) clamp(22px, 2.6vw, 32px);
+}
+.cform-success .cf-success-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  margin-bottom: 8px;
+  color: #fff;
+  font-size: 26px;
+  background: linear-gradient(135deg, var(--grad-a), var(--grad-b));
+  box-shadow: 0 14px 30px -12px rgba(112, 51, 255, 0.7);
+}
+.cform-success h3 {
+  font-family: var(--f-display);
+  font-weight: 700;
+  font-size: clamp(20px, 2.2vw, 24px);
+  letter-spacing: -0.02em;
+  margin: 0 0 6px;
+}
+.cform-success p {
+  color: var(--fg-muted);
+  font-size: 14px;
+  margin: 0 0 22px;
+  max-width: 40ch;
+}
+
+/* ---- responsive ---- */
+@media (max-width: 880px) {
+  .jd-grid {
+    grid-template-columns: 1fr;
+  }
+  .jd-sidebar {
+    position: static;
+  }
+}
+@media (max-width: 560px) {
+  .cf-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .jd-meta {
+    gap: 12px;
+    row-gap: 8px;
+  }
+}

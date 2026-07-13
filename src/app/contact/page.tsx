@@ -1,89 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
+import { ROLES, DEPT_FILTERS, type Role } from "@/data/roles";
 import "./contact.css";
-
-type Role = {
-  dept: "eng" | "ai" | "design" | "gtm";
-  deptLabel: string;
-  icon: string;
-  isNew: boolean;
-  title: string;
-  excerpt: string;
-  location: string;
-  time: string;
-};
-
-const ROLES: Role[] = [
-  {
-    dept: "eng",
-    deptLabel: "Engineering",
-    icon: "ti-code",
-    isNew: true,
-    title: "Senior Frontend Engineer",
-    excerpt: "Own our React design system and craft the glassy, motion-rich surfaces our users live in every day.",
-    location: "Thimphu · Hybrid · Full-time",
-    time: "2d ago",
-  },
-  {
-    dept: "ai",
-    deptLabel: "AI",
-    icon: "ti-sparkles",
-    isNew: true,
-    title: "ML Engineer — LLM & Agents",
-    excerpt: "Build the agents behind predictive risk, task prioritisation and auto-drafted docs.",
-    location: "Remote · Full-time",
-    time: "4d ago",
-  },
-  {
-    dept: "design",
-    deptLabel: "Design",
-    icon: "ti-pencil",
-    isNew: false,
-    title: "Product Designer (UI/UX)",
-    excerpt: "Shape end-to-end flows for planning, reports and our GNH wellbeing layer.",
-    location: "Thimphu · Full-time",
-    time: "1w ago",
-  },
-  {
-    dept: "eng",
-    deptLabel: "Engineering",
-    icon: "ti-server-2",
-    isNew: false,
-    title: "Backend Engineer",
-    excerpt: "Design the realtime APIs and data models powering every Jaggle workspace.",
-    location: "Thimphu · Hybrid · Full-time",
-    time: "1w ago",
-  },
-  {
-    dept: "gtm",
-    deptLabel: "Go-to-market",
-    icon: "ti-chart-line",
-    isNew: false,
-    title: "Founding Account Executive",
-    excerpt: "Take Jaggle to teams across the region as our first dedicated seller.",
-    location: "Thimphu · Full-time",
-    time: "2w ago",
-  },
-  {
-    dept: "eng",
-    deptLabel: "Engineering",
-    icon: "ti-code",
-    isNew: true,
-    title: "Frontend Intern",
-    excerpt: "Learn alongside our team shipping real UI to production from day one.",
-    location: "Thimphu · Internship",
-    time: "Just posted",
-  },
-];
-
-const DEPT_FILTERS: { key: "all" | Role["dept"]; label: string }[] = [
-  { key: "all", label: "All" },
-  { key: "eng", label: "Engineering" },
-  { key: "ai", label: "AI" },
-  { key: "design", label: "Design" },
-  { key: "gtm", label: "Go-to-market" },
-];
 
 const TOPICS = [
   { value: "general", label: "General" },
@@ -476,13 +396,13 @@ export default function ContactPage() {
           {ROLES.map((role, i) => {
             const hidden = activeFilter !== "all" && role.dept !== activeFilter;
             return (
-              <a
+              <Link
                 key={role.title}
                 ref={(el) => {
                   roleCardRefs.current[i] = el;
                 }}
                 className={`role dept-${role.dept}${hidden ? " is-hidden" : ""}`}
-                href="#"
+                href={`/careers/apply/${role.id}`}
                 data-dept={role.dept}
                 onPointerMove={handleRolePointerMove}
               >
@@ -522,7 +442,7 @@ export default function ContactPage() {
                     </span>
                   </span>
                 </span>
-              </a>
+              </Link>
             );
           })}
         </div>
