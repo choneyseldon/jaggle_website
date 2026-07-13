@@ -875,12 +875,13 @@ html[data-theme="day"] .foot-wordmark {
     gap: 18px 40px;
   }
   .foot-wordmark {
-    font-size: clamp(56px, 26vw, 200px);
+    font-size: clamp(44px, 20vw - 4px, 200px);
     position: static;
     transform: none;
     left: auto;
     bottom: auto;
     margin: 28px 0 16px;
+    max-width: 100%;
   }
   .foot-bottom {
     flex-direction: column;
