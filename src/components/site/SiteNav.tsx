@@ -102,8 +102,6 @@ export function SiteNav({ ctaHref, ctaLabel = "Get started free" }: SiteNavProps
           })}
         </div>
 
-        {showMegaMenu && <MegaMenu id="megaFeatures" open={megaOpen} onEnter={openMega} onLeave={closeMegaSoon} />}
-
         <div className="nav-right">
           {/* <ThemeToggle /> */}
           <Link className="lg-btn lg-btn--primary lg-btn--sm" href={resolvedCtaHref}>
@@ -125,6 +123,8 @@ export function SiteNav({ ctaHref, ctaLabel = "Get started free" }: SiteNavProps
           </button>
         </div>
       </nav>
+
+      {showMegaMenu && <MegaMenu id="megaFeatures" open={megaOpen} onEnter={openMega} onLeave={closeMegaSoon} />}
 
       <aside className="drawer" id="drawer" aria-hidden={!drawerOpen}>
         <nav className="drawer-links" aria-label="Mobile">
