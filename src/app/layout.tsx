@@ -8,8 +8,35 @@ import { themeInitScript } from "@/components/site/ThemeToggle";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Jaggle AI",
+  metadataBase: new URL("https://jaggle.ai"),
+  title: "Jaggle AI — AI + GNH Project Management",
   description: "AI + GNH project management. Plan smarter. Ship calmer.",
+  keywords: ["project management", "AI project management", "team wellbeing", "GNH", "Gross National Happiness", "Bhutan", "risk prediction", "sprint planning"],
+  openGraph: {
+    type: "website",
+    siteName: "Jaggle AI",
+    title: "Jaggle AI — AI + GNH Project Management",
+    description: "AI + GNH project management. Plan smarter. Ship calmer.",
+    url: "/",
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@jaggleai",
+    title: "Jaggle AI — AI + GNH Project Management",
+    description: "AI + GNH project management. Plan smarter. Ship calmer.",
+  },
+};
+
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Jaggle AI",
+  url: "https://jaggle.ai",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Thimphu",
+    addressCountry: "BT",
+  },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
@@ -18,6 +45,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <head>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.5.0/dist/tabler-icons.min.css" />
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }} />
       </head>
       <body suppressHydrationWarning>
         <BackgroundLayer />

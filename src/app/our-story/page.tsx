@@ -6,8 +6,15 @@ import { CountUp } from "@/components/site/CountUp";
 import { AwardsSection } from "./AwardsRail";
 import "./our-story.css";
 
+const title = "Jaggle AI — About";
+const description = "Bhutan-born, globally minded. The story behind Jaggle and why Gross National Happiness belongs in project management.";
+
 export const metadata: Metadata = {
-  title: "Jaggle AI — About",
+  title,
+  description,
+  alternates: { canonical: "/our-story" },
+  openGraph: { title, description, url: "/our-story", images: ["/opengraph-image"] },
+  twitter: { card: "summary_large_image", title, description, images: ["/opengraph-image"] },
 };
 
 const STATS = [

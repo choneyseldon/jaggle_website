@@ -10,6 +10,8 @@ export type Role = {
   excerpt: string;
   location: string;
   time: string;
+  /** ISO date (YYYY-MM-DD) matching `time`'s relative label — used for JobPosting structured data. */
+  datePosted: string;
   about: string;
   responsibilities: string[];
   requirements: string[];
@@ -27,6 +29,7 @@ export const ROLES: Role[] = [
     excerpt: "Own our React design system and craft the glassy, motion-rich surfaces our users live in every day.",
     location: "Thimphu · Hybrid · Full-time",
     time: "2d ago",
+    datePosted: "2026-07-14",
     about:
       "You'll own the design system and surfaces that every Jaggle user lives in — the planning boards, AI report views and the GNH wellbeing layer. We're a small team, so you'll ship end to end: from a Figma frame to a production component used across the whole app, with a real say in the interaction and motion language.",
     responsibilities: [
@@ -55,6 +58,7 @@ export const ROLES: Role[] = [
     excerpt: "Build the agents behind predictive risk, task prioritisation and auto-drafted docs.",
     location: "Remote · Full-time",
     time: "4d ago",
+    datePosted: "2026-07-12",
     about:
       "Jaggle's AI layer is what turns a plain project tracker into something that actually thinks alongside the team — predicting risk before it becomes a fire drill, prioritising the next task, drafting the PRD nobody wanted to write. You'll design and ship the agents behind that layer, end to end.",
     responsibilities: [
@@ -83,6 +87,7 @@ export const ROLES: Role[] = [
     excerpt: "Shape end-to-end flows for planning, reports and our GNH wellbeing layer.",
     location: "Thimphu · Full-time",
     time: "1w ago",
+    datePosted: "2026-07-09",
     about:
       "You'll shape how teams plan, report and check in on their own wellbeing inside Jaggle — end-to-end flows, not just screens. Bhutan's Gross National Happiness philosophy is genuinely baked into the product, and you'll help make that feel real rather than decorative.",
     responsibilities: [
@@ -111,6 +116,7 @@ export const ROLES: Role[] = [
     excerpt: "Design the realtime APIs and data models powering every Jaggle workspace.",
     location: "Thimphu · Hybrid · Full-time",
     time: "1w ago",
+    datePosted: "2026-07-09",
     about:
       "Every Jaggle workspace — its boards, timelines, AI agent runs and reports — is backed by the APIs and data models you'll help design. We're still early enough that core architecture decisions are open, and you'll have real ownership over how the backend scales as teams grow.",
     responsibilities: [
@@ -139,6 +145,7 @@ export const ROLES: Role[] = [
     excerpt: "Take Jaggle to teams across the region as our first dedicated seller.",
     location: "Thimphu · Full-time",
     time: "2w ago",
+    datePosted: "2026-07-02",
     about:
       "You'll be the first dedicated seller at Jaggle, taking the product to teams across the region who are done burning people out to hit deadlines. There's no existing playbook to inherit — you'll help write it, working directly with the founders on positioning, pricing conversations and early customer relationships.",
     responsibilities: [
@@ -167,6 +174,7 @@ export const ROLES: Role[] = [
     excerpt: "Learn alongside our team shipping real UI to production from day one.",
     location: "Thimphu · Internship",
     time: "Just posted",
+    datePosted: "2026-07-16",
     about:
       "You'll ship real UI to production from your first week, not just shadow the team. This is a hands-on internship for someone who wants to learn modern frontend engineering by actually building the surfaces thousands of people will use — with real code review and mentorship along the way.",
     responsibilities: [
