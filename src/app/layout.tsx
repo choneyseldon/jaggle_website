@@ -5,6 +5,7 @@ import { GlassFilters } from "@/components/site/GlassFilters";
 import { SiteNav } from "@/components/site/SiteNav";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { themeInitScript } from "@/components/site/ThemeToggle";
+import "@tabler/icons-webfont/dist/tabler-icons.min.css";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -43,7 +44,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en" data-theme="day" className={`${geist.variable} ${geistMono.variable}`} suppressHydrationWarning>
       <head>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.5.0/dist/tabler-icons.min.css" />
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }} />
       </head>

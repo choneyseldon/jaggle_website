@@ -63,7 +63,7 @@
 .contact-title .eyebrow {
   margin-bottom: clamp(14px, 2vh, 22px);
 }
-.section h2.contact-h {
+.section h1.contact-h {
   font-family: var(--f-display);
   font-weight: 600;
   font-size: clamp(44px, 6.5vw, 92px);
@@ -73,7 +73,7 @@
   max-width: none;
   text-align: center;
 }
-.contact-title h2.contact-h .grad {
+.contact-title h1.contact-h .grad {
   background: linear-gradient(110deg, var(--grad-a) 0%, var(--grad-b) 45%, #78c8ff 60%, var(--grad-b) 80%, var(--grad-a) 100%);
   background-size: 240% 100%;
   -webkit-background-clip: text;

@@ -54,10 +54,10 @@ export function PricingClient() {
       <section className="section pricing-hero" id="pricing">
         <div className="container">
           <div className="pricing-title">
-            <h2>
+            <h1>
               <span className="line grad">Simple,</span>
               <span className="line">fair pricing.</span>
-            </h2>
+            </h1>
             <p>
               Start free, scale when it pays off.
               <br />

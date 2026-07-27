@@ -162,9 +162,9 @@ export function ContactClient() {
       <section className="section contact-hero" id="contact">
         <div className="container">
           <div className="sec-head contact-title">
-            <h2 className="contact-h">
+            <h1 className="contact-h">
               Get in <span className="grad">touch.</span>
-            </h2>
+            </h1>
             <p>Questions, demos, partnerships or press — we usually reply within one business day.</p>
           </div>
         </div>

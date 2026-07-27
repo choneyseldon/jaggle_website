@@ -269,9 +269,9 @@ export function RequestDemoClient() {
       <section className="sec contact-hero" id="demo">
         <div className="sec-inner">
           <div className="sec-head center contact-title">
-            <h2 className="contact-h">
+            <h1 className="contact-h">
               See Jaggle <span className="grad">in action.</span>
-            </h2>
+            </h1>
             <p>
               Book a guided 30-minute walkthrough. We&apos;ll tailor it to your team — planning, AI agents, reports and the GNH
               wellbeing layer. No slides, no pressure.

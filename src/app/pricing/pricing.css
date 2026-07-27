@@ -40,7 +40,7 @@
   margin: 0 auto clamp(24px, 3vh, 36px);
   text-align: center;
 }
-.pricing-title h2 {
+.pricing-title h1 {
   font-family: var(--f-display);
   font-weight: 700;
   font-size: clamp(40px, 6.6vw, 86px);
@@ -50,11 +50,11 @@
   max-width: none;
   text-align: center;
 }
-.pricing-title h2 .line {
+.pricing-title h1 .line {
   display: block;
   color: var(--fg);
 }
-.pricing-title h2 .line.grad {
+.pricing-title h1 .line.grad {
   background: linear-gradient(110deg, var(--grad-a) 0%, var(--grad-b) 45%, #78c8ff 60%, var(--grad-b) 80%, var(--grad-a) 100%);
   background-size: 240% 100%;
   -webkit-background-clip: text;
