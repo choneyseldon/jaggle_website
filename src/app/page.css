@@ -453,11 +453,11 @@
   width: max-content;
   gap: 56px;
   padding: 0 56px;
-  animation: lcScroll 30s linear infinite reverse;
+  animation: lcScroll 30s linear infinite;
   will-change: transform;
 }
 .lc-frame:hover .lc-track {
-  animation-duration: 84s;
+  animation-play-state: paused;
 }
 @keyframes lcScroll {
   to {
