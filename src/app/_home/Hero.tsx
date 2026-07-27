@@ -7,16 +7,6 @@ export function Hero() {
   const btnRef = useRef<HTMLAnchorElement>(null);
 
   useEffect(() => {
-    const raf1 = requestAnimationFrame(() => {
-      requestAnimationFrame(() => document.body.classList.add("hero-in"));
-    });
-    return () => {
-      cancelAnimationFrame(raf1);
-      document.body.classList.remove("hero-in");
-    };
-  }, []);
-
-  useEffect(() => {
     const btn = btnRef.current;
     if (!btn) return;
     const setPath = () => {

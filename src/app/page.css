@@ -91,22 +91,22 @@
   filter: blur(8px);
   will-change: opacity, transform, filter;
 }
-body.hero-in .hero .eyebrow {
+.hero .eyebrow {
   animation: heroRise 0.8s var(--ease) both 0.15s;
 }
-body.hero-in .hero h1 .line:nth-child(1) {
+.hero h1 .line:nth-child(1) {
   animation: heroRise 0.9s var(--ease) both 0.35s;
 }
-body.hero-in .hero h1 .line:nth-child(2) {
+.hero h1 .line:nth-child(2) {
   animation: heroRise 0.9s var(--ease) both 0.5s;
 }
-body.hero-in .hero h1 .line:nth-child(3) {
+.hero h1 .line:nth-child(3) {
   animation: heroRise 0.9s var(--ease) both 0.65s;
 }
-body.hero-in .hero p {
+.hero p {
   animation: heroRise 0.9s var(--ease) both 0.9s;
 }
-body.hero-in .hero-actions {
+.hero-actions {
   animation: heroRise 0.9s var(--ease) both 1.05s;
 }
 @keyframes heroRise {
