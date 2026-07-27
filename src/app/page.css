@@ -1103,7 +1103,6 @@ html[data-theme="day"] .board-card {
   background-position: 50% 50%;
   background-attachment: fixed;
   border: var(--border-size) solid rgba(255, 255, 255, 0.06);
-  touch-action: none;
 }
 #surfaces .sf-glow::before,
 #surfaces .sf-glow::after {
@@ -1451,6 +1450,10 @@ html[data-theme="day"] .board-card {
   #surfaces .sf-glow::after,
   #surfaces .sf-glow > .sf-bloom {
     background-attachment: scroll;
+  }
+  /* pointer-following spotlight is a desktop hover/cursor effect — disable on mobile */
+  #surfaces .sf-glow {
+    --sf-glow-on: 0;
   }
 }
 

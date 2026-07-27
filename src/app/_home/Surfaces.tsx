@@ -8,6 +8,10 @@ export function Surfaces() {
   const [score, setScore] = useState(0);
 
   useEffect(() => {
+    // pointer-following spotlight is a desktop hover/cursor effect — skip on mobile,
+    // where it only added continuous work during touch-scroll without visual benefit
+    if (window.matchMedia("(max-width: 620px)").matches) return;
+
     const root = document.documentElement;
     let raf: number | null = null;
     let px = window.innerWidth * 0.5;
