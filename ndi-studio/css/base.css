@@ -1,0 +1,114 @@
+/* =====================================================================
+   Bhutan NDI — base layer
+   Typography scale (§2), layout containers and breakpoints (§3), and the
+   "theme what you didn't draw" pass (§8 rule 10). Requires tokens.css.
+   ===================================================================== */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--surface-sunken);
+  color: var(--text-body);
+  font-family: var(--f-body);
+  font-size: 16px;
+  line-height: 1.62;
+  -webkit-font-smoothing: antialiased;
+  /* Rule 8: decorative overhang is clipped, never `hidden` — `hidden`
+     creates a scroll container and breaks sticky positioning. */
+  overflow-x: clip;
+}
+
+/* --- 3. Layout ------------------------------------------------------ */
+.ndi-page { max-width: var(--page-max); margin-inline: auto; padding-inline: var(--gutter); }
+@media (min-width: 641px) { :root { --gutter: 32px; } }
+
+.ndi-hero { padding-top: 176px; }          /* clears the fixed header */
+.ndi-section { padding-block: 72px; }      /* 64–104px rhythm */
+[id] { scroll-margin-top: var(--anchor-clearance); }
+
+/* --- 2. Type scale -------------------------------------------------- */
+h1, h2, h3, h4 {
+  font-family: var(--f-display);
+  color: var(--text-strong);
+  text-wrap: balance;
+  margin: 0;
+}
+p { text-wrap: pretty; margin: 0; }
+
+h1 { font-size: clamp(38px, 5vw, 58px); line-height: 1.04; letter-spacing: -0.03em; font-weight: 600; }
+h1.ndi-h1-xl { font-size: clamp(38px, 5.6vw, 64px); letter-spacing: -0.035em; }
+h2 { font-size: 40px; line-height: 1.1; letter-spacing: -0.01em; font-weight: 700; }
+h2.ndi-h2-sub { font-size: clamp(30px, 3.6vw, 42px); line-height: 1.1; letter-spacing: -0.02em; font-weight: 600; }
+h2.ndi-h2-article { font-size: 21px; line-height: 1.25; letter-spacing: -0.02em; font-weight: 600; }
+
+.ndi-lead { font-size: 17px; line-height: 1.62; max-width: var(--lead-max); color: var(--text-body); }
+.ndi-body { font-size: 16px; line-height: 1.62; max-width: var(--measure); }
+.ndi-article-body { font-size: 16.5px; line-height: 1.75; max-width: var(--measure); }
+
+/* The eyebrow — the system's most repeated signature.
+   Every section labels itself: `— Media coverage` */
+.ndi-eyebrow {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-accent);
+  display: block;
+}
+.ndi-eyebrow::before { content: "— "; }
+
+.ndi-meta {
+  font-family: var(--f-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+.ndi-meta-sm { font-size: 9.5px; letter-spacing: 0.14em; }
+
+/* --- 3. Grids ------------------------------------------------------- */
+.ndi-card-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
+@media (min-width: 701px) { .ndi-card-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1101px) { .ndi-card-grid { grid-template-columns: repeat(3, 1fr); } }
+
+.ndi-article-rail { display: grid; grid-template-columns: 1fr; gap: 64px; }
+@media (min-width: 1001px) { .ndi-article-rail { grid-template-columns: 3fr 1fr; } }
+
+.ndi-index-rail { display: grid; grid-template-columns: 1fr; gap: 64px; }
+@media (min-width: 1001px) { .ndi-index-rail { grid-template-columns: 1.9fr 1fr; } }
+
+/* Bento — each card carries its own span */
+.ndi-bento { display: grid; grid-template-columns: 1fr; gap: 20px; }
+@media (min-width: 641px) {
+  .ndi-bento { grid-template-columns: repeat(12, 1fr); grid-auto-rows: minmax(232px, auto); }
+}
+
+/* --- 8. Theme what you didn't draw --------------------------------- */
+::selection { background: var(--ndi-mint-25); color: var(--text-strong); }
+:root { caret-color: var(--accent); accent-color: var(--accent); scrollbar-color: var(--ndi-ink-500) transparent; }
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--ndi-ink-500); border-radius: var(--radius-pill); }
+::-webkit-scrollbar-thumb:hover { background: var(--ndi-ink-400); }
+
+:focus-visible { outline: none; box-shadow: var(--ring); border-radius: 4px; }
+
+a { color: var(--text-accent); text-decoration: none; }
+
+/* Icons are drawn, one stroke weight, from a single set. */
+.ndi-icon { width: 1em; height: 1em; stroke: currentColor; stroke-width: 1.8; fill: none;
+  stroke-linecap: round; stroke-linejoin: round; }
+
+/* --- 5. Motion: everything collapses under reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

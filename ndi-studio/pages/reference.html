@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NDI Studio — design foundation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/ndi-effects.css">
+</head>
+<body>
+<div class="ndi-atmosphere"></div>
+<div class="ndi-circuit"></div>
+
+<header class="ndi-header">
+  <strong style="font-family:var(--f-display);letter-spacing:-.02em">NgoTag Studio</strong>
+  <nav class="ndi-header-links">
+    <a class="ndi-navlink" href="#" aria-current="page"><span>Overview<br>Overview</span></a>
+    <a class="ndi-navlink" href="#"><span>Credentials<br>Credentials</span></a>
+    <a class="ndi-navlink" href="#"><span>Verifiers<br>Verifiers</span></a>
+    <button class="ndi-shiny">Sign in</button>
+  </nav>
+  <button class="ndi-backbtn ndi-header-burger">Menu</button>
+</header>
+
+<main class="ndi-page ndi-hero">
+  <span class="ndi-eyebrow">Design foundation</span>
+  <h1 style="margin:14px 0">Every value here is the one <span class="ndi-wave-text">actually shipping</span></h1>
+  <p class="ndi-lead">A near-black cool ground, one mint accent, hairline mint borders, and glass
+  surfaces that sample the page behind them. Restraint carries the authority.</p>
+
+  <section class="ndi-section">
+    <span class="ndi-eyebrow">Buttons</span>
+    <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:18px">
+      <button class="ndi-btn">Issue credential<span class="ndi-btn-sweep"></span></button>
+      <button class="ndi-shiny">Nav CTA</button>
+      <button class="ndi-backbtn"><svg class="ndi-icon" viewBox="0 0 24 24"><path d="M19 12H5m0 0 6-6m-6 6 6 6"/></svg>Back</button>
+      <button class="ndi-backbtn" data-dir="forward">Next<svg class="ndi-icon" viewBox="0 0 24 24"><path d="M5 12h14m0 0-6-6m6 6-6 6"/></svg></button>
+      <button class="ndi-va">View all<svg class="ndi-icon" viewBox="0 0 24 24"><path d="M5 12h14m0 0-6-6m6 6-6 6"/></svg></button>
+    </div>
+  </section>
+
+  <section class="ndi-section">
+    <span class="ndi-eyebrow">Cards</span>
+    <div class="ndi-card-grid" style="margin-top:18px">
+      <a class="ndi-card ndi-artcard ndi-lift" href="#" data-reveal>
+        <div class="ndi-artcard-art">
+          <div class="ndi-artcard-plate">Verification</div>
+          <span class="ndi-news-chip">Guide</span>
+        </div>
+        <div class="ndi-artcard-body">
+          <span class="ndi-meta ndi-meta-sm">23 Aug 2026</span>
+          <span class="ndi-artcard-title">Onboarding a verifier organisation</span>
+          <p class="ndi-artcard-excerpt">Register, claim a schema, and issue your first proof request.</p>
+          <span class="ndi-tut">Read<svg class="ndi-icon" viewBox="0 0 24 24"><path d="M5 12h14m0 0-6-6m6 6-6 6"/></svg></span>
+        </div>
+      </a>
+      <div class="ndi-card ndi-spot" data-reveal style="padding:24px">
+        <div class="ndi-spot-halo"></div><div class="ndi-spot-fill"></div>
+        <span class="ndi-eyebrow">Spotlight</span>
+        <p class="ndi-artcard-excerpt" style="margin-top:10px">A cursor-tracked hairline ring. One global
+        pointer position and <code style="font-family:var(--f-mono)">background-attachment: fixed</code>
+        serve every card — no per-card JS.</p>
+      </div>
+      <div class="ndi-card" data-reveal style="padding:24px">
+        <span class="ndi-eyebrow">Form</span>
+        <label class="ndi-label" style="margin-top:14px">Holder name</label>
+        <input class="ndi-field" placeholder="Search holders…">
+        <span class="ndi-help">Matches DID, CID, or display name.</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="ndi-section">
+    <span class="ndi-eyebrow">Controls</span>
+    <div style="display:flex;flex-wrap:wrap;gap:20px;align-items:center;margin-top:18px">
+      <div class="ndi-tabs" role="tablist">
+        <button class="ndi-tab" role="tab" aria-selected="true"><svg class="ndi-icon" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></svg>All</button>
+        <button class="ndi-tab" role="tab" aria-selected="false">Issued</button>
+        <button class="ndi-tab" role="tab" aria-selected="false">Revoked</button>
+      </div>
+      <label class="ndi-chip"><input type="radio" name="f" checked>Active</label>
+      <label class="ndi-chip"><input type="radio" name="f">Expired</label>
+    </div>
+  </section>
+
+  <section class="ndi-section">
+    <span class="ndi-eyebrow">Neutral ramp</span>
+    <div style="display:flex;gap:0;margin-top:18px;border:1px solid var(--border-grid);border-radius:var(--radius-card);overflow:hidden">
+      <div style="flex:1;height:64px;background:var(--ndi-ink-900)"></div>
+      <div style="flex:1;height:64px;background:var(--ndi-ink-800)"></div>
+      <div style="flex:1;height:64px;background:var(--ndi-ink-700)"></div>
+      <div style="flex:1;height:64px;background:var(--ndi-ink-600)"></div>
+      <div style="flex:1;height:64px;background:var(--ndi-ink-500)"></div>
+      <div style="flex:1;height:64px;background:var(--ndi-ink-400)"></div>
+      <div style="flex:1;height:64px;background:var(--ndi-mint)"></div>
+      <div style="flex:1;height:64px;background:var(--ndi-teal)"></div>
+    </div>
+    <p class="ndi-body" style="margin-top:20px;color:var(--text-body)">Body text at 16px/1.62 in
+    <span style="color:var(--text-strong)">strong</span>,
+    <span style="color:var(--text-muted)">muted</span>,
+    <span style="color:var(--text-faint)">faint</span> and
+    <a href="#">accent</a> steps.</p>
+  </section>
+</main>
+<script src="../js/ndi-runtime.js" defer></script>
+</body>
+</html>

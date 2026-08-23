@@ -1,0 +1,162 @@
+/* =====================================================================
+   Bhutan NDI — Design tokens
+   Ported verbatim from DESIGN.md §1–§5. Plain custom properties only:
+   no framework, no build step, nothing stack-specific.
+
+   Load this first, then ndi-effects.css.
+   ===================================================================== */
+
+/* Registration is required for the animated conic borders. Without it
+   the angle (and the highlight width) jumps rather than interpolating. */
+@property --gradient-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@property --shiny-pct {
+  syntax: "<percentage>";
+  initial-value: 12%;
+  inherits: false;
+}
+
+:root {
+  /* ---------------------------------------------------------------
+     1. COLOUR — brand primitives
+     --------------------------------------------------------------- */
+  --ndi-mint: #5ac994;         /* the accent: links, active, icons, eyebrows */
+  --ndi-mint-bright: #6fe0a9;  /* hover lift */
+  --ndi-mint-deep: #3da876;    /* pressed */
+  --ndi-teal: #124143;         /* structural depth, gradient partner */
+  --ndi-teal-soft: #1a585b;    /* lifted teal panels */
+  --ndi-obsidian: #141b29;     /* base canvas */
+
+  /* Neutral ramp — cool, obsidian-derived */
+  --ndi-ink-900: #0c111b;      /* page ground (body) */
+  --ndi-ink-800: #141b29;      /* canvas */
+  --ndi-ink-700: #1b2433;      /* raised surface, form fields */
+  --ndi-ink-600: #232e40;      /* card / panel */
+  --ndi-ink-500: #2e3a4f;      /* hover surface, scrollbar thumb */
+  --ndi-ink-400: #3b495f;      /* strong divider */
+  --ndi-300: #7c828a;          /* faintest text — lifted from #62676d for AA */
+  --ndi-200: #8b95a5;          /* secondary text */
+  --ndi-100: #c5ccd8;          /* body text */
+  --ndi-000: #ffffff;          /* headings */
+
+  /* Mint alpha set — the hairline-and-glow vocabulary */
+  --ndi-mint-04: rgba(90, 201, 148, 0.04);
+  --ndi-mint-08: rgba(90, 201, 148, 0.08);  /* standard tinted fill */
+  --ndi-mint-12: rgba(90, 201, 148, 0.12);
+  --ndi-mint-15: rgba(90, 201, 148, 0.15);  /* canonical border */
+  --ndi-mint-25: rgba(90, 201, 148, 0.25);
+  --ndi-mint-40: rgba(90, 201, 148, 0.4);
+
+  /* --- Semantic aliases: reference these, not the primitives above --- */
+  --surface-canvas: var(--ndi-ink-800);
+  --surface-sunken: var(--ndi-ink-900);
+  --surface-raised: var(--ndi-ink-700);
+  --surface-card: var(--ndi-ink-600);
+  --surface-hover: var(--ndi-ink-500);
+  --surface-glass: rgba(18, 65, 67, 0.35);
+  --surface-glass-strong: rgba(18, 65, 67, 0.55);
+
+  --text-strong: #ffffff;      /* headings */
+  --text-body: #c5ccd8;        /* paragraphs */
+  --text-muted: #8b95a5;       /* secondary */
+  --text-faint: #7c828a;       /* labels, dates, captions */
+  --text-accent: #5ac994;
+  --text-on-mint: #06241a;     /* dark text on a mint fill */
+
+  --border-grid: var(--ndi-mint-15);          /* the default hairline */
+  --border-subtle: rgba(255, 255, 255, 0.06); /* dividers inside a dark panel */
+  --border-strong: var(--ndi-mint-25);        /* hover */
+  --border-divider: var(--ndi-ink-400);
+
+  --accent: var(--ndi-mint);
+  --accent-hover: var(--ndi-mint-bright);
+  --accent-press: var(--ndi-mint-deep);
+  --focus-ring: var(--ndi-mint-40);
+
+  --ndi-success: #5ac994;
+  --ndi-info: #4aa3ff;
+  --ndi-warning: #f5b740;
+  --ndi-danger: #e1493e;
+
+  /* ---------------------------------------------------------------
+     2. TYPOGRAPHY
+     --------------------------------------------------------------- */
+  --f-display: "Host Grotesk", Inter, system-ui, sans-serif;
+  --f-body: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "DM Mono", ui-monospace, SFMono-Regular, monospace;
+
+  /* ---------------------------------------------------------------
+     3. SPACE AND LAYOUT
+     --------------------------------------------------------------- */
+  --page-max: 1200px;
+  --gutter: 20px;              /* → 32px from 641px, see base.css */
+  --measure: 66ch;             /* article measure */
+  --lead-max: 620px;           /* hero lead */
+  --anchor-clearance: 108px;
+
+  /* ---------------------------------------------------------------
+     4. RADII, ELEVATION, GLOW
+     --------------------------------------------------------------- */
+  --radius-card: 16px;
+  --radius-panel: 20px;
+  --radius-panel-lg: 24px;
+  --radius-control: 12px;
+  --radius-tab: 9px;           /* inner segmented tab */
+  --radius-pill: 999px;
+
+  /* Shadows always carry an offset AND a blur. A zero-offset coloured
+     halo is decoration, not depth. */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 24px 60px rgba(0, 0, 0, 0.55);
+
+  --glow-sm: 0 0 0 1px var(--ndi-mint-25), 0 0 16px rgba(90, 201, 148, 0.25);
+  --glow-md: 0 0 24px rgba(90, 201, 148, 0.35);
+  --glow-lg: 0 0 48px rgba(90, 201, 148, 0.4);
+
+  --ring: 0 0 0 3px var(--focus-ring);
+  --inset-top: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+
+  /* Signature gradients */
+  --grad-depth: radial-gradient(120% 120% at 50% -10%, #163a3c, #141b29 46%, #0c111b);
+  --grad-card: linear-gradient(160deg, rgba(26, 88, 91, 0.28), rgba(35, 46, 64, 0.5) 60%);
+  --grad-mint: linear-gradient(135deg, #6fe0a9, #5ac994 55%, #3da876);
+  --grad-text: linear-gradient(92deg, #6fe0a9, #5ac994 60%, #2e8d8f);
+
+  /* Wireframe grid — behind decorative panels */
+  --grid-bg:
+    linear-gradient(var(--ndi-mint-08) 1px, transparent 1px),
+    linear-gradient(90deg, var(--ndi-mint-08) 1px, transparent 1px);
+  --grid-size: 48px 48px;
+
+  /* The card material — shared by every glass surface */
+  --fill-card: linear-gradient(158deg,
+    rgba(255, 255, 255, 0.03) 0%,
+    rgba(255, 255, 255, 0.006) 46%,
+    rgba(90, 201, 148, 0.03) 100%);
+  --shadow-card:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),        /* top light */
+    inset 1px 0 0 rgba(255, 255, 255, 0.04),        /* left light */
+    inset 0 -20px 34px -24px rgba(255, 255, 255, 0.07),
+    0 18px 40px -26px rgba(0, 0, 0, 0.9);
+
+  /* ---------------------------------------------------------------
+     5. MOTION
+     --------------------------------------------------------------- */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);      /* default, front-loaded */
+  --ease-glide: cubic-bezier(0.33, 1, 0.68, 1);    /* long travel */
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);   /* symmetric loops */
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);/* entrances ONLY */
+  --dur-fast: 140ms;
+  --dur: 220ms;
+  --dur-slow: 400ms;
+
+  /* Pointer position, written by one document listener. Every
+     spotlight / circuit effect reads from here. */
+  --gx: 50%;
+  --gy: 50%;
+}

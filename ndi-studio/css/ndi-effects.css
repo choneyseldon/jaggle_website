@@ -1,0 +1,526 @@
+/* =====================================================================
+   Bhutan NDI — components and signature effects
+   DESIGN.md §6 (components) and §7 (effects). Requires tokens.css.
+   ===================================================================== */
+
+/* =====================================================================
+   6.1 BUTTONS — five variants, all >=44px tall on touch
+   ===================================================================== */
+
+/* Primary — filled mint */
+.ndi-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 48px;
+  padding: 0 24px;
+  border: 0;
+  border-radius: var(--radius-control);
+  font-family: var(--f-display);
+  font-size: 14.5px;
+  font-weight: 600;
+  color: #08130f;
+  cursor: pointer;
+  overflow: hidden;
+  background: linear-gradient(115deg, #8cf0c0 0%, #6fe0a9 24%, #4fc091 56%, #2fa189 80%, #1e8189 100%);
+  box-shadow: var(--glow-sm);
+  transition: transform var(--dur) var(--ease-out), box-shadow var(--dur) var(--ease-out);
+}
+.ndi-btn:hover { transform: translateY(-3px); box-shadow: var(--glow-md); }
+.ndi-btn:active { transform: scale(0.99); }
+
+/* The sweep is a child span. */
+.ndi-btn > .ndi-btn-sweep {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.14), transparent);
+  transform: translateX(-100%);
+}
+.ndi-btn:hover > .ndi-btn-sweep { animation: ndiSweep 1s var(--ease-glide); }
+@keyframes ndiSweep { from { transform: translateX(-100%); } to { transform: translateX(100%); } }
+
+/* Nav CTA — animated conic border. Needs @property --gradient-angle
+   registered (tokens.css) or the angle jumps instead of interpolating. */
+.ndi-shiny {
+  --shiny-bg: #0e1622;
+  --shiny-pct: 12%;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 44px;
+  padding: 0 20px;
+  border: 1px solid transparent;
+  border-radius: 360px;
+  font-family: var(--f-display);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-strong);
+  cursor: pointer;
+  background:
+    linear-gradient(var(--shiny-bg), var(--shiny-bg)) padding-box,
+    conic-gradient(from calc(var(--gradient-angle) - 40deg),
+      transparent,
+      var(--ndi-mint) var(--shiny-pct),
+      #d6fdec calc(var(--shiny-pct) * 2),
+      var(--ndi-mint) calc(var(--shiny-pct) * 3),
+      transparent calc(var(--shiny-pct) * 4)) border-box;
+  animation: ndiGradientAngle 3s linear infinite;
+  transition: --shiny-pct 800ms var(--ease-glide);
+}
+.ndi-shiny:hover { --shiny-pct: 20%; }
+@keyframes ndiGradientAngle { to { --gradient-angle: 360deg; } }
+
+/* Secondary — outline pill */
+.ndi-backbtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  height: 46px;
+  padding: 0 20px;
+  border: 1px solid var(--border-grid);
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--text-body);
+  font-size: 14px;
+  cursor: pointer;
+  transition: background var(--dur) var(--ease-out), border-color var(--dur) var(--ease-out),
+    color var(--dur) var(--ease-out), box-shadow var(--dur) var(--ease-out);
+}
+.ndi-backbtn .ndi-icon { transition: transform var(--dur-fast) var(--ease-out); }
+.ndi-backbtn:hover {
+  background: var(--ndi-mint-08);
+  border-color: rgba(90, 201, 148, 0.42);
+  color: var(--text-strong);
+  box-shadow: var(--glow-sm);
+}
+.ndi-backbtn:hover .ndi-icon { transform: translateX(-4px); }         /* toward where it goes */
+.ndi-backbtn[data-dir="forward"]:hover .ndi-icon { transform: translateX(4px); }
+
+/* Tertiary — "view all" pill */
+.ndi-va {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 38px;
+  padding: 0 16px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  background: #18202c;
+  color: var(--text-body);
+  font-size: 13px;
+  cursor: pointer;
+  isolation: isolate;
+  box-shadow: inset 0 -14px 20px -18px rgba(90, 201, 148, 0.55);
+}
+.ndi-va::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  z-index: -1;
+  border-radius: inherit;
+  filter: blur(14px);
+  opacity: 0;
+  background: conic-gradient(from var(--gradient-angle), #1e8189, #5ac994, #8cf0c0, #5ac994, #1e8189);
+  animation: ndiGradientAngle 4s linear infinite;
+  transition: opacity var(--dur-slow) var(--ease-out);
+}
+.ndi-va:hover::before { opacity: 0.9; }
+.ndi-va .ndi-icon { transition: transform var(--dur-fast) var(--ease-out); }
+.ndi-va:hover .ndi-icon { transform: translateX(5px); }
+
+/* Quiet — inline link with arrow. The arrow answers hover on the
+   ENCLOSING link, because the whole card is usually the target. */
+.ndi-tut {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--f-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-accent);
+}
+.ndi-tut .ndi-icon { transition: transform var(--dur-fast) var(--ease-out); }
+a:hover .ndi-tut .ndi-icon { transform: translateX(5px); }
+
+/* =====================================================================
+   6.2 CARDS
+   ===================================================================== */
+
+/* The card material. Cards carry almost no fill of their own — they are a
+   blurred, slightly brightened view of the atmosphere behind, plus a rim.
+   Over an OPAQUE base use blur(12px) alone (.ndi-card--opaque): saturate
+   and brightness amplify whatever sits behind, so the same treatment then
+   renders differently card to card. */
+.ndi-card {
+  position: relative;
+  border: 1px solid var(--border-grid);
+  border-radius: var(--radius-card);
+  background: var(--fill-card);
+  backdrop-filter: blur(12px) saturate(140%) brightness(1.03);
+  box-shadow: var(--shadow-card);
+}
+.ndi-card--opaque { backdrop-filter: blur(12px); }
+
+/* Lift */
+.ndi-lift { transition: transform var(--dur) var(--ease-out), box-shadow var(--dur) var(--ease-out); }
+.ndi-lift:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 26px -8px var(--ndi-mint-40), 0 0 0 1px rgba(90, 201, 148, 0.18);
+}
+.ndi-role-card:hover { transform: translateY(-4px); }
+
+/* Article card — the workhorse */
+.ndi-artcard { display: flex; flex-direction: column; height: 100%; overflow: hidden; }
+.ndi-artcard-art {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border-grid);
+}
+.ndi-artcard--feature .ndi-artcard-art { aspect-ratio: 16 / 9; }
+.ndi-artcard-art img { width: 100%; height: 100%; object-fit: cover;
+  transition: transform var(--dur-slow) var(--ease-out); }
+.ndi-artcard:hover .ndi-artcard-art img { transform: scale(1.035); }
+
+/* No artwork → a label plate: the category at 26px over the wireframe grid */
+.ndi-artcard-plate {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  padding: 20px;
+  font-family: var(--f-display);
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--text-muted);
+  background-image: var(--grid-bg);
+  background-size: var(--grid-size);
+}
+
+.ndi-artcard-body { display: flex; flex-direction: column; gap: 8px; flex: 1; padding: 20px; }
+.ndi-artcard--feature .ndi-artcard-body { padding: 24px; }
+.ndi-artcard-title {
+  font-family: var(--f-display);
+  font-size: 16.5px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  color: var(--text-strong);
+  text-wrap: balance;
+  transition: color var(--dur) var(--ease-out);
+}
+.ndi-artcard--feature .ndi-artcard-title { font-size: 21px; }
+.ndi-artcard:hover .ndi-artcard-title { color: var(--text-accent); }
+.ndi-artcard-excerpt { font-size: 13.5px; line-height: 1.6; color: var(--text-muted); }
+.ndi-artcard--feature .ndi-artcard-excerpt { font-size: 14.5px; }
+.ndi-artcard-body > .ndi-tut { margin-top: auto; }
+
+/* Chips */
+.ndi-news-chip {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  padding: 5px 10px;
+  border: 1px solid rgba(90, 201, 148, 0.3);
+  border-radius: var(--radius-pill);
+  background: rgba(12, 17, 27, 0.72);
+  backdrop-filter: blur(6px);
+  font-family: var(--f-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-accent);
+}
+
+.ndi-chip {
+  display: inline-flex;
+  align-items: center;
+  height: 36px;
+  padding: 0 16px;
+  border: 1px solid var(--border-grid);
+  border-radius: var(--radius-pill);
+  color: var(--text-muted);
+  font-size: 13.5px;
+  cursor: pointer;
+  transition: all var(--dur) var(--ease-out);
+}
+.ndi-chip input { position: absolute; opacity: 0; pointer-events: none; }
+.ndi-chip:has(input:checked) {
+  color: var(--text-accent);
+  border-color: rgba(90, 201, 148, 0.45);
+  background: var(--ndi-mint-08);
+  box-shadow: var(--glow-sm);
+}
+
+/* Spotlight card — a cursor-tracked hairline ring.
+   `background-attachment: fixed` is what lets ONE global pointer position
+   serve every card on the page. No per-card JS. */
+.ndi-spot {
+  --bsz: 1px;    /* ring weight */
+  --rad: 16px;
+  --spot: 250px; /* ring reach */
+  position: relative;
+  border-radius: var(--rad);
+  isolation: isolate;
+}
+.ndi-spot::before,
+.ndi-spot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: var(--bsz);
+  pointer-events: none;
+  background-attachment: fixed;
+  background-image: radial-gradient(var(--spot) circle at var(--gx) var(--gy),
+    var(--ndi-mint) 0%, rgba(90, 201, 148, 0.35) 40%, transparent 70%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+.ndi-spot::after { filter: blur(6px); opacity: 0.7; }
+.ndi-spot-halo {
+  position: absolute;
+  inset: -20px;
+  z-index: -1;
+  border-radius: inherit;
+  filter: blur(24px);
+  opacity: 0.5;
+  pointer-events: none;
+  background-attachment: fixed;
+  background-image: radial-gradient(200px circle at var(--gx) var(--gy),
+    rgba(90, 201, 148, 0.35), transparent 70%);
+}
+.ndi-spot-fill {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background-attachment: fixed;
+  background-image: radial-gradient(300px circle at var(--gx) var(--gy),
+    var(--ndi-mint-08), transparent 70%);
+}
+
+/* =====================================================================
+   6.3 FORM CONTROLS — label above, helper below, gap-2.
+   Never placeholder-as-label.
+   ===================================================================== */
+.ndi-field {
+  display: block;
+  width: 100%;
+  height: 48px;
+  padding: 0 14px;
+  border: 1px solid var(--border-grid);
+  border-radius: var(--radius-control);
+  background: var(--surface-raised);
+  color: var(--text-strong);
+  font-family: var(--f-body);
+  font-size: 14px;
+}
+.ndi-field::placeholder { color: var(--text-faint); opacity: 0.7; }
+.ndi-field:hover { border-color: var(--border-strong); }
+.ndi-field:focus { outline: none; border-color: var(--accent); box-shadow: var(--ring); }
+textarea.ndi-field { height: auto; min-height: 120px; padding: 12px 14px; line-height: 1.6; }
+
+.ndi-label { display: block; font-size: 13px; color: var(--text-muted); margin-bottom: 8px; }
+.ndi-help { display: block; font-size: 12.5px; color: var(--text-faint); margin-top: 8px; }
+
+.ndi-search { position: relative; }
+.ndi-search .ndi-icon { position: absolute; left: 16px; top: 50%; transform: translateY(-50%);
+  width: 16px; height: 16px; color: var(--text-faint); pointer-events: none; }
+.ndi-search .ndi-field { padding-left: 44px; }
+
+/* =====================================================================
+   6.4 SEGMENTED TABS
+   Below 641px the control is full width and DISTRIBUTES its spare space;
+   from 641px it goes inline-flex and HUGS its content — distributing at
+   tablet width pushed four tabs 117px apart and they stopped reading as
+   one control.
+   ===================================================================== */
+.ndi-tabs {
+  display: flex;
+  width: 100%;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid var(--border-grid);
+  border-radius: var(--radius-control);
+  background: rgba(255, 255, 255, 0.02);
+}
+.ndi-tabs > * { flex: 1; }
+@media (min-width: 641px) {
+  .ndi-tabs { display: inline-flex; width: auto; }
+  .ndi-tabs > * { flex: 0 0 auto; }
+}
+.ndi-tab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 44px;
+  padding: 0 16px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-tab);
+  background: transparent;
+  color: var(--text-muted);
+  font-family: var(--f-display);
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--dur) var(--ease-out);
+}
+@media (min-width: 641px) { .ndi-tab { font-size: 14.5px; } }
+.ndi-tab[aria-selected="true"] {
+  background: var(--ndi-mint-12);
+  border-color: rgba(90, 201, 148, 0.32);
+  color: var(--text-strong);
+}
+/* Icons show on the active tab always, and on all tabs from 641px. */
+.ndi-tab .ndi-icon { display: none; }
+.ndi-tab[aria-selected="true"] .ndi-icon { display: block; }
+@media (min-width: 641px) { .ndi-tab .ndi-icon { display: block; } }
+
+/* =====================================================================
+   6.5 HEADER — a floating glass pill
+   ===================================================================== */
+.ndi-header {
+  position: fixed;
+  top: 16px;
+  left: 14px;
+  right: 14px;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  height: 64px;
+  padding: 0 20px;
+  border: 1px solid var(--border-grid);
+  border-radius: var(--radius-pill);
+  background: var(--surface-glass-strong);
+  backdrop-filter: blur(16px) saturate(140%);
+  box-shadow: var(--shadow-md);
+}
+.ndi-header-links { display: none; }
+.ndi-header-burger { display: inline-flex; }
+@media (min-width: 901px) {
+  .ndi-header-links { display: flex; align-items: center; gap: 26px; }
+  .ndi-header-burger { display: none; }
+}
+
+/* Roll-up hover: the label travels -50% inside a clipped 19px box. */
+.ndi-navlink { display: block; height: 19px; overflow: hidden; color: var(--text-body); font-size: 14px; }
+.ndi-navlink > span { display: block; height: 19px; line-height: 19px;
+  transition: transform var(--dur) var(--ease-out); }
+.ndi-navlink:hover > span { transform: translateY(-50%); }
+.ndi-navlink[aria-current] > span { background: var(--grad-text);
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+
+/* =====================================================================
+   6.6 MOBILE MENU — full-viewport panel BEHIND the header (z-56 vs the
+   header's z-60), so the logo and close button never move.
+   100dvh, not vh: it tracks collapsing browser toolbars.
+   ===================================================================== */
+.ndi-mobilemenu {
+  position: fixed;
+  inset-inline: 0;
+  top: 0;
+  z-index: 56;
+  height: 100dvh;
+  overflow-y: auto;
+  padding-top: calc(16px + 64px + 14px);
+  padding-bottom: calc(env(safe-area-inset-bottom) + 88px);
+  background: rgba(11, 15, 24, 0.985);
+  backdrop-filter: blur(20px) saturate(140%);
+  /* the fade says the list continues rather than ending in a hard cut */
+  -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 56px), transparent);
+  mask-image: linear-gradient(to bottom, #000 calc(100% - 56px), transparent);
+}
+.ndi-mobilerow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px var(--gutter);
+  border-bottom: 1px solid var(--border-subtle);
+  font-family: var(--f-display);
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--text-strong);
+}
+.ndi-mobilerow[aria-current] { background: var(--grad-text);
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+
+/* =====================================================================
+   7. SIGNATURE EFFECTS
+   ===================================================================== */
+
+/* 1. Circuit atmosphere — a fixed --grad-depth ground with circuit-trace
+   bands over it, revealed near the pointer by a spotlight mask.
+   The field exists to answer a cursor, so it is removed outright where
+   there isn't one. */
+.ndi-atmosphere {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: var(--grad-depth);
+}
+.ndi-circuit {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: var(--grid-bg);
+  background-size: var(--grid-size);
+  -webkit-mask-image: radial-gradient(340px circle at var(--gx) var(--gy), #000, transparent 70%);
+  mask-image: radial-gradient(340px circle at var(--gx) var(--gy), #000, transparent 70%);
+}
+@media (hover: none), (pointer: coarse) {
+  .ndi-circuit { display: none; }
+}
+
+/* 3. The mint wave — ONE emphasised phrase per headline. Never two. */
+.ndi-wave-text {
+  background: linear-gradient(105deg, #2f8f6b 0%, #5ac994 25%, #7ddcac 42%,
+    #9deec4 50%, #7ddcac 58%, #5ac994 75%, #2f8f6b 100%);
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: ndiWave 6.5s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate;
+}
+/* The ramp is sized to the span, so a one-word phrase wants 138%: that
+   lands ~72% of the sweep inside the word and still leaves overflow for
+   the shimmer to travel. */
+.ndi-wave-text--short { background-size: 138% 100%; }
+@keyframes ndiWave { from { background-position: 0% 50%; } to { background-position: 100% 50%; } }
+
+/* 4. Reveal on scroll — transform only, opacity committed to 1, so
+   content is never left invisible if a transition is dropped. */
+[data-reveal] { opacity: 1; transform: translateY(18px); transition: transform 0.7s var(--ease-out); }
+[data-reveal][data-revealed] { transform: none; }
+
+/* =====================================================================
+   Touch: a tap applies :hover and LEAVES it applied. Every hover-only
+   displacement is neutralised on coarse pointers — cards would stay
+   lifted, arrows stay nudged. Colour, glow and one-shot sweeps still
+   fire, because those read as tap feedback rather than a stuck state.
+   ===================================================================== */
+@media (hover: none) {
+  .ndi-btn:hover,
+  .ndi-lift:hover,
+  .ndi-role-card:hover { transform: none; }
+  .ndi-backbtn:hover .ndi-icon,
+  .ndi-backbtn[data-dir="forward"]:hover .ndi-icon,
+  .ndi-va:hover .ndi-icon,
+  a:hover .ndi-tut .ndi-icon { transform: none; }
+  .ndi-artcard:hover .ndi-artcard-art img { transform: none; }
+  .ndi-navlink:hover > span { transform: none; }
+}
